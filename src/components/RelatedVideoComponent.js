@@ -21,7 +21,7 @@ export default class RelatedVideoComponent extends Component {
           </a>
         </div>
         <div className="media-body">
-          <a className="media-heading" onClick={this.selectVideo.bind(this)} >{this.props.title.substr(0, 62)}</a>
+          <a className="media-heading" onClick={this.selectVideo.bind(this)} style={{cursor:'pointer'}}>{this.props.title.substr(0, 62)}</a>
           <p>{this.props.channel}</p>
         </div>
       </div>
