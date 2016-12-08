@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
-import NavBarComponent from './NavBarComponent';
-import VideoComponent from './VideoComponent';
-import RelatedVideoComponent from './RelatedVideoComponent';
-
-import youtube from 'youtube-finder';
+import YoutubeService from './services/YoutubeService';
+import NavBarComponent from './components/NavBarComponent';
+import VideoComponent from './components/VideoComponent';
+import RelatedVideosComponent from './components/RelatedVideosComponent';
 
 import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-class App extends Component {
+export default class App extends Component {
 
   constructor() {
 
     super();
 
-    this.state = {videos: []};
+    const youtube = new YoutubeService();
+    youtube.search({part: 'snippet', q: 'BrazilJS', type: 'video', maxResults: 10});
 
-    let client = youtube.createClient({key: 'AIzaSyAHoTN2lk-bvVAOI_sHXVWTXWrbrTofWiQ'});
-
-    client.search({part: 'snippet', q: 'corinthians', type: 'video', maxResults: 5}, (err, data) => {
-      
-      this.state = {videos: data.items};
-    });
   }
 
   render() {
@@ -30,25 +23,13 @@ class App extends Component {
         <NavBarComponent />
         <div className="container">
           <section className="col-xs-12 col-sm-9">
-            <VideoComponent videoURL={"http://www.youtube.com/embed/" + this.state.videos[0].id.videoId} />
+            <VideoComponent />
           </section>
           <aside className="col-xs-6 col-sm-3">
-            <h4>Vídeos Relacionados</h4>
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
-            <RelatedVideoComponent />
+            <RelatedVideosComponent />
           </aside>
         </div>
       </div>
     );
   }
 }
-
-export default App;
