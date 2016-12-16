@@ -15,4 +15,4 @@ npm install
 
 ### Running
 
-The easiest way to get started is to clone this repo and run ```npm start```. The demo song will be running at http://localhost:3000.
+The easiest way to get started is to clone this repo and run ```npm start```. The project will be running at http://localhost:3000.
